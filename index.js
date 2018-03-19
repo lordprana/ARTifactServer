@@ -57,6 +57,7 @@ const createApp = () => {
 
   // api routes
   app.use('/api', require('./api'));
+  app.use('/auth', require('./auth'));
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')));
@@ -86,7 +87,7 @@ const startListening = () => {
 
 };
 
-const syncDb = () => db.sync();
+const syncDb = () => db.sync({ force: false });
 
 // This evaluates as true when this file is run directly from the command line,
 // i.e. when we say 'node server/index.js' (or 'nodemon server/index.js', or 'nodemon server', etc)
