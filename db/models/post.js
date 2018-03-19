@@ -1,30 +1,24 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require('sequelize');
+const db = require('../db');
 
 const Post = db.define('post', {
-    userName: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-            notEmpty: true
-        }
-    },
     subjectLine: {
         type: Sequelize.STRING,
         allowNull: true
     },
     content: {
         type: Sequelize.TEXT,
+        allowNull: false,
         validate: {
             notEmpty: true
         }
     },
-    score: {
+    votes: {
         type: Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 1,
     }
-})
+});
 
 
-module.exports = Post
+module.exports = Post;

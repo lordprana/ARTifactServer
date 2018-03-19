@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require('sequelize');
+const db = require('../db');
 
 
 const User = db.define('user', {
@@ -10,9 +10,6 @@ const User = db.define('user', {
             notEmpty: true
         }
     },
-    gallery: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
-    },
     email: {
         type: Sequelize.STRING,
         allowNull: true,
@@ -21,7 +18,7 @@ const User = db.define('user', {
         }
     }
 
-})
+});
 
 
-module.exports = User
+module.exports = User;
