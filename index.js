@@ -33,6 +33,11 @@ const createApp = () => {
   // logging middleware
   app.use(morgan('dev'));
 
+  // this route must be before body parsing middleware to take advantage of
+  // streaming the request
+  app.use('/api/identify-piece-from-plaque-image',
+    require('./api/identify-piece-from-plaque-image'));
+
   // body parsing middleware
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
