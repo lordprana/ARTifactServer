@@ -1,10 +1,15 @@
-const router = require('express').Router()
+const router = require('express').Router();
+const { Post } = require('../db/models');
+module.exports = router;
 
 
 //GET ALL POSTS FOR INDIVIDUAL USER
-router.get('/users/:userId/posts', (req, res, next) => {
-    const id = req.params.categoryId
-    Post.findById(id)
-        .then(category => res.json(category))
-        .catch(next)
-})
+router.get('/:userId/posts', (req, res, next) => {
+    Post.findAll({
+        where: {
+            userId: req.params.userId
+        }
+    })
+    .then(posts => res.json(posts))
+    .catch(next);
+});

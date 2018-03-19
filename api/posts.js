@@ -1,44 +1,49 @@
-const router = require('express').Router()
-const {Post} = require('../db/models')
+const router = require('express').Router();
+const {Post} = require('../db/models');
 
 
 //GET ALL POSTS FOR HOME PAGE
-router.get('/posts', (req, res, next) => {
+router.get('/', (req, res, next) => {
     Post.findAll()
     .then(posts => res.json(posts))
-    .catch(next)
-})
+    .catch(next);
+});
 
-router.get('/posts/:postId', (req, res, next) => {
-    Post.findAll()
-    .then(post => res.json(post))
-    .catch(next)
-})
+router.get('/:postId', (req, res, next) => {
+    Post.findById(req.params.postId)
+    .then(post => {
+        if (post) res.json(post);
+        else res.sendStatus(404);
+    })
+    .catch(next);
+});
 
-router.post('/posts', (req, res, next) => {
+router.post('/', (req, res, next) => {
     Post.create(req.body)
     .then(newPost => res.json(newPost))
-    .catch(next)
-})
+    .catch(next);
+});
 
-router.put('/posts/:postId', (req, res, next) => {
-    const id = req.params.postId
+router.put('/:postId', (req, res, next) => {
+    const id = req.params.postId;
     Post.update(req.body, {
         where: {id},
         returning: true
     })
-    .then(([rowsUpdate, [newPost]]) =>
-        res.json(newPost)
-    ).catch(next)
-})
+    .then(([rowsUpdate, [newPost]]) => {
+        if (newPost) res.json(newPost);
+        else res.sendStatus(404);
+    })
+    .catch(next);
+});
 
 router.delete('/:postId', (req, res, next) => {
-    const id = req.params.postId
+    const id = req.params.postId;
     Post.destroy({
         where: {id}
     })
-        .then(() => res.sendStatus(204))
-        .catch(next)
-})
+    .then(() => res.sendStatus(204))
+    .catch(next);
+});
 
-module.exports = router
+module.exports = router;
