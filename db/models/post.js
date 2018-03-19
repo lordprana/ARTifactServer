@@ -4,7 +4,7 @@ const db = require('../db');
 const Post = db.define('post', {
     subjectLine: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: false
     },
     content: {
         type: Sequelize.TEXT,

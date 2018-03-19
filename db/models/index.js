@@ -1,5 +1,7 @@
 const User = require('./user');
 const Post = require('./post');
+const Piece = require('./piece');
+const Artist = require('./artist');
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -17,7 +19,15 @@ const Post = require('./post');
 
 Post.belongsTo(User, { foreignKey: { allowNull: false } });
 
+Piece.belongsTo(Artist, { foreignKey: { allowNull: false } });
+Artist.hasMany(Piece);
+
+User.belongsToMany(Piece, { as: 'FavoritePieces', through: 'UserPiece' });
+Piece.belongsToMany(User, { through: 'UserPiece' });
+
 module.exports = {
   User,
-  Post
+  Post,
+  Piece,
+  Artist
 };
