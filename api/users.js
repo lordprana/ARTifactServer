@@ -3,10 +3,11 @@ const { User, Post } = require('../db/models');
 module.exports = router;
 
 
-router.get('/:facebookId', (req, res, next) => {
+router.get('/me', (req, res, next) => {
+    if (!req.auth) return res.sendStatus(401)
     User.findOne({
         where: {
-            facebookId: req.params.facebookId,
+            uuid: req.auth,
         }
     })
     .then(user => {
