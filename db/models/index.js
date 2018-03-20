@@ -20,7 +20,8 @@ Piece.belongsTo(Museum, { foreignKey: { allowNull: false } })
 Museum.hasMany(Piece);
 
 Post.belongsTo(User, { foreignKey: { allowNull: false } });
-
+Post.belongsTo(Piece, { foreignKey: { allowNull: false } });
+Piece.hasMany(Post);
 Piece.belongsTo(Artist, { foreignKey: { allowNull: false } });
 Artist.hasMany(Piece);
 
