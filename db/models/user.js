@@ -31,7 +31,7 @@ const User = db.define('user', {
         unique: true,
 
     },
-    facebookPic: {
+    facebookPicUrl: {
         type: Sequelize.STRING
     },
     uuid: {
