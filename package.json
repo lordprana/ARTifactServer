@@ -10,7 +10,8 @@
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "start": "node index.js",
-    "test": "NODE_ENV='test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js"
+    "test": "NODE_ENV='test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js",
+    "seed": "node script/seed.js"
   },
   "jest": {
     "preset": "jest-expo"
