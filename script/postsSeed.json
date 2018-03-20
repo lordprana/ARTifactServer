@@ -1,0 +1,42 @@
+[
+    {
+        "subjectLine": "Leonard is Totally Amazing!",
+        "content": "This piece is an excellent example of Leonard's masterful control over composition, and her incredible eye for color",
+        "votes": 4,
+        "pieceId": 2,
+        "userId": 3,
+        "parentId": null
+    },
+    {
+        "subjectLine": null,
+        "content": "Her eye is simply amazing. Her ability to see the beauty in crowded, urban areas is an inspiration to us all.",
+        "votes": 10,
+        "pieceId": 2,
+        "userId": 5,
+        "parentId": 1
+    },
+    {
+        "subjectLine": null,
+        "content": "One of the most underappreciated artists of her time!  Leonard shows us time and time again that beauty is in the eye of the beholder. This piece is an excellent example of how she can propose fascinating questions about human nature and create compelling narratives through a single photograph.",
+        "votes": 12,
+        "pieceId": 2,
+        "userId": 2,
+        "parentId": 1
+    },
+    {
+    "subjectLine": null,
+    "content": "I completely agree. What an insightful comment! I really think that Leonard's approach deals with the issue of voyeurism with incredible tact and mastery. Her carefully constructed perspective makes me feel like I am there in the scene with these people. Simply magical!",
+    "votes": 8,
+    "pieceId": 2,
+    "userId": 3,
+    "parentId": 2
+    },
+    {
+        "subjectLine": null,
+        "content": "bleak but powerful, Leonard embodies what it means to be a modern photographer",
+        "votes": 6,
+        "pieceId": 5,
+        "userId": 2,
+        "parentId": 4
+    }
+]
