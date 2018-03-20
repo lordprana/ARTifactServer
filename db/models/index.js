@@ -16,11 +16,13 @@ const Museum = require('./museum');
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
  */
-Piece.belongsTo(Museum, { foreignKey: { allowNull: false } })
+Piece.belongsTo(Museum, { foreignKey: { allowNull: true } })
 Museum.hasMany(Piece);
 
 Post.belongsTo(User, { foreignKey: { allowNull: false } });
 Post.belongsTo(Piece, { foreignKey: { allowNull: false } });
+Post.belongsTo(Post, { as: 'parent'})
+User.hasMany(Post);
 Piece.hasMany(Post);
 Piece.belongsTo(Artist, { foreignKey: { allowNull: false } });
 Artist.hasMany(Piece);

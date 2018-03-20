@@ -4,7 +4,7 @@ const db = require('../db');
 const Post = db.define('post', {
     subjectLine: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     content: {
         type: Sequelize.TEXT,
@@ -19,6 +19,11 @@ const Post = db.define('post', {
         defaultValue: 1,
     }
 });
-
+Post.beforeCreate((post, options) => {
+        if(post.parentId !== null){
+            post.setDataValue('subjectLine', null)
+        }
+    }
+)
 
 module.exports = Post;
