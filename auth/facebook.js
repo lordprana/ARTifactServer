@@ -15,18 +15,35 @@ if (!process.env.FACEBOOK_APP_ID || !process.env.FACEBOOK_APP_SECRET) {
   })
 
   router.post('/', (req, res, next) => {
+    console.log('incoming token:', req.body.token)
     axios.get(`https://graph.facebook.com/me?fields=name,id,email,picture&access_token=${req.body.token}`)
     .then(result => result.data)
     .then(fbUser => {
-      User.create({
-        userName: fbUser.name,
-        email: fbUser.email,
-        facebookId: fbUser.id,
-        facebookPic: fbUser.picture.url,
+      console.log('user from FB:', fbUser)
+      User.find({
+        where: { facebookId: fbUser.id }
       })
-      .catch(err => console.log(err))
+      .then(foundUser => {
+        if (foundUser === null) {
+          console.log('creating new user...')
+          User.create({
+            userName: fbUser.name,
+            email: fbUser.email,
+            facebookId: fbUser.id,
+            facebookPic: fbUser.picture.data.url,
+          })
+          .then(newUser => {
+            res.send(newUser)
+            console.log('user sent back to client')
+          })
+          .catch(err => console.log(err))
+        } else {
+          console.log('found a user')
+          res.send(foundUser)
+          console.log('user sent back to client')
+        }
+      })
     })
-    .then(user => res.send(user))
     .catch(err => console.log(err))
   })
 }
