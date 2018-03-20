@@ -9,7 +9,10 @@ router.get('/:facebookId', (req, res, next) => {
             facebookId: req.params.facebookId,
         }
     })
-    .then(user => res.send(user))
+    .then(user => {
+        if (user) res.send(user)
+        else res.sendStatus(404)
+    })
     .catch(next);
 });
 
