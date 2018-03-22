@@ -1,11 +1,20 @@
 const router = require('express').Router();
+const { User } = require('../db/models');
 module.exports = router;
 
 router.use((req, res, next) => {
   req.auth = (req.headers.authorization && req.headers.authorization.startsWith('Bearer'))
-  ? req.headers.authorization.slice(7)
-  : null;
-  next();
+  ? req.headers.authorization.slice(7) : null;
+  if (req.auth) {
+    User.findOne({ where: { uuid: req.auth } })
+    .then(user => {
+      req.user = user;
+      next();
+    })
+  } else {
+    req.user = null;
+    next();
+  }
 });
 
 router.use('/posts', require('./posts'));
