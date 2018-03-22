@@ -3,14 +3,10 @@ const { User, Post } = require('../db/models');
 module.exports = router;
 
 
-router.get('/:facebookId', (req, res, next) => {
-    User.findOne({
-        where: {
-            facebookId: req.params.facebookId,
-        }
-    })
-    .then(user => res.send(user))
-    .catch(next);
+router.get('/me', (req, res, next) => {
+    if (!req.auth) return res.sendStatus(401)
+    if (!req.user) return res.sendStatus(404)
+    return res.json(req.user)
 });
 
 //GET ALL POSTS FOR INDIVIDUAL USER
