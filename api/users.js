@@ -9,13 +9,23 @@ router.get('/me', (req, res, next) => {
     return res.json(req.user)
 });
 
-//GET ALL POSTS FOR INDIVIDUAL USER
-router.get('/:facebookId/posts', (req, res, next) => {
-    Post.findAll({
-        where: {
-            facebookId: req.params.facebookId
-        }
+router.get('my-pieces', (req, res, next) => {
+    if (!req.auth) return res.sendStatus(401)
+    if (!req.user) return res.sendStatus(404)
+    req.user.getFavoritePieces()
+    .then(pieces => {
+        console.log(pieces)
+        res.json(pieces)
     })
-    .then(posts => res.json(posts))
-    .catch(next);
+    .catch(next)
 });
+
+router.post('add-piece', (req, res, next) => {
+    if (!req.auth) return res.sendStatus(401)
+    if (!req.user) return res.sendStatus(404)
+    req.user.addFavoritePiece(req.body.piece.id)
+    .then(piece => {
+        console.log(piece)
+        res.json(piece)
+    })
+})
