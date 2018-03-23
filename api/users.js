@@ -9,18 +9,17 @@ router.get('/me', (req, res, next) => {
     return res.json(req.user)
 });
 
-router.get('my-pieces', (req, res, next) => {
+router.get('/my-pieces', (req, res, next) => {
     if (!req.auth) return res.sendStatus(401)
     if (!req.user) return res.sendStatus(404)
     req.user.getFavoritePieces()
     .then(pieces => {
-        console.log(pieces)
         res.json(pieces)
     })
     .catch(next)
 });
 
-router.post('add-piece', (req, res, next) => {
+router.post('/add-piece', (req, res, next) => {
     if (!req.auth) return res.sendStatus(401)
     if (!req.user) return res.sendStatus(404)
     req.user.addFavoritePiece(req.body.piece.id)
