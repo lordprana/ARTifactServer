@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const https = require('https');
-const { Piece, Artist } = require('../db/models');
+const { Piece, Artist, Post } = require('../db/models');
 module.exports = router;
 
 async function identifyPieceFromRecognizedText(text) {
@@ -18,6 +18,9 @@ async function identifyPieceFromRecognizedText(text) {
     include: [
       {
         model: Artist
+      },
+      {
+        model: Post,
       }
     ]
   });
@@ -78,7 +81,14 @@ router.post('/', (req, res, next) => {
       res.rawRes += chunk;
     });
     googleRes.on('end', () => {
-      const text = JSON.parse(res.rawRes).responses[0].fullTextAnnotation.text;
+      const textAnnotation = JSON.parse(res.rawRes).responses[0]
+                              .fullTextAnnotation;
+
+      // If no text is identified, return no objects identified
+      if (textAnnotation === undefined) {
+        return res.json([]);
+      }
+      const text = textAnnotation.text;
       identifyPieceFromRecognizedText(text)
       .then(pieces => {
         res.json(pieces);
@@ -94,3 +104,63 @@ router.post('/', (req, res, next) => {
     googleReq.end();
   });
 });
+
+// router.post('/', (req, res, next) => {
+//   let results = [];
+//   Piece.findById(1, {
+//     include: [
+//       {
+//         model: Artist
+//       },
+//       {
+//         model: Post
+//       }
+//     ]
+//   }).then(piece => {
+//     results.push(piece);
+//     return Piece.findById(2, {
+//       include: [
+//         {
+//           model: Artist
+//         },
+//         {
+//           model: Post
+//         }
+//       ]
+//     });
+//   }).then(piece => {
+//     results.push(piece);
+//     return Piece.findById(3, {
+//       include: [
+//         {
+//           model: Artist
+//         },
+//         {
+//           model: Post
+//         }
+//       ]
+//     });
+//   })
+// .then(piece => {
+//     results.push(piece);
+//     res.json(results);
+//   });
+// });
+
+// router.post('/', (req, res, next) => {
+//   let results = [];
+//   Piece.findById(2, {
+//     include: [
+//       {
+//         model: Artist
+//       },
+//       {
+//         model: Post
+//       }
+//     ]
+//   })
+// .then(piece => {
+//     results.push(piece);
+//     res.json(results);
+//   });
+// });
