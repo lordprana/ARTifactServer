@@ -6,18 +6,23 @@ module.exports = router;
 router.get('/me', (req, res, next) => {
     if (!req.auth) return res.sendStatus(401)
     if (!req.user) return res.sendStatus(404)
-    return res.json(req.user)
-});
-
-router.get('/my-pieces', (req, res, next) => {
-    if (!req.auth) return res.sendStatus(401)
-    if (!req.user) return res.sendStatus(404)
     req.user.getFavoritePieces()
     .then(pieces => {
-        res.json(pieces)
+        req.user.dataValues.pieces = pieces
+        res.json(req.user)
     })
     .catch(next)
 });
+
+// router.get('/my-pieces', (req, res, next) => {
+//     if (!req.auth) return res.sendStatus(401)
+//     if (!req.user) return res.sendStatus(404)
+//     req.user.getFavoritePieces()
+//     .then(pieces => {
+//         res.json(pieces)
+//     })
+//     .catch(next)
+// });
 
 router.post('/add-piece', (req, res, next) => {
     if (!req.auth) return res.sendStatus(401)
