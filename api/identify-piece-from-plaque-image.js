@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const https = require('https');
-const { Piece, Artist } = require('../db/models');
+const { Piece, Artist, Post } = require('../db/models');
 module.exports = router;
 
 async function identifyPieceFromRecognizedText(text) {
@@ -18,6 +18,9 @@ async function identifyPieceFromRecognizedText(text) {
     include: [
       {
         model: Artist
+      },
+      {
+        model: Post
       }
     ]
   });

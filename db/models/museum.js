@@ -9,10 +9,14 @@ const Museum = db.define('museum', {
             notEmpty: true
         }
     },
-    location: {
-        type: Sequelize.GEOMETRY('POINT'),
+    latitude: {
+        type: Sequelize.FLOAT,
         allowNull: false
     },
+    longitude: {
+        type: Sequelize.FLOAT,
+        allowNull: false
+    }
 })
 
 
