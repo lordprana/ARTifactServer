@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const { Museum, Piece } = require('../db/models')
+module.exports = router
 
 router.get('/location', (req, res, next) => {
   //send coords in query string
