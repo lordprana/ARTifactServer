@@ -5,14 +5,12 @@ const db = require('../db');
 const { Piece, Artist, Post, User } = require('../db/models');
 
 const pieces = require('./piecesSeed.json');
-const posts = require('./postsSeed.json')
-const users = require('./usersSeed.json')
+const posts = require('./postsSeed.json');
+const users = require('./usersSeed.json');
 
 function findOrCreateArtist(piece) {
   const birthYear = piece['Birth Year'] ? piece['Birth Year'] : null;
   const deathYear = piece['Death Year'] ? piece['Death Year'] : null;
-  console.log(birthYear);
-  console.log(deathYear);
   return Artist.findOrCreate({
     where: {
       name: piece['Artist Name'],
@@ -38,11 +36,12 @@ async function seedPieces() {
 }
 
 async function seedUsers(){
-  for(let i =0; i<users.length; i++){
-    await User.create({
-      userName: users[i]['userName'],
-      email: users[i]['email']
-    })
+  for (let i = 0; i < users.length; i++){
+    let user = await User.create({
+      userName: users[i].userName,
+      email: users[i].email
+    });
+    user.addFavoritePiece(1);
   }
 }
 
@@ -51,19 +50,15 @@ async function seedPosts() {
     // If there is an empty record, break out of callback
     // let [artist, _] = await findOrCreateArtist(pieces[i]);
     await Post.create({
-      subjectLine: posts[i]['subjectLine'],
-      content: posts[i]['content'],
-      votes: posts[i]['votes'],
-      userId: posts[i]['userId'],
-      pieceId: posts[i]['pieceId'],
-      parentId: posts[i]['parentId']
+      subjectLine: posts[i].subjectLine,
+      content: posts[i].content,
+      votes: posts[i].votes,
+      userId: posts[i].userId,
+      pieceId: posts[i].pieceId,
+      parentId: posts[i].parentId
     });
   }
 }
-
-
-
-
 
 
 db.sync({ force: true })
