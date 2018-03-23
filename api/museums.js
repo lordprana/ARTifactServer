@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Museum } = require('../db/models')
+const { Museum, Piece } = require('../db/models')
 
 router.get('/location', (req, res, next) => {
   //send coords in query string
@@ -7,7 +7,11 @@ router.get('/location', (req, res, next) => {
 })
 
 router.get('/:museumId', (req, res, next) => {
-  Museum.findById(req.params.museumId)
+  Museum.findById(req.params.museumId, {
+    include: [
+      { model: Piece }
+    ]
+  })
   .then(museum => {
     res.json(museum)
   })
