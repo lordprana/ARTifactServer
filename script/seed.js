@@ -2,7 +2,7 @@
 // Google Sheets converted to JSON using https://www.csvjson.com/csv2json
 
 const db = require('../db');
-const { Piece, Artist, Post, User } = require('../db/models');
+const { Piece, Artist, Post, User, Museum } = require('../db/models');
 
 const pieces = require('./piecesSeed.json');
 const posts = require('./postsSeed.json');
@@ -30,9 +30,18 @@ async function seedPieces() {
     await Piece.create({
       name: pieces[i]['Piece name'],
       artistId: artist.id,
-      year
+      year,
+      museumId: pieces[i]['museumId']
     });
   }
+}
+
+async function seedMuseum(){
+  await Museum.create({
+    name: 'Whitney',
+    latitude: 12,
+    longitude: 5
+  })
 }
 
 async function seedUsers(){
@@ -67,6 +76,9 @@ async function seedPosts() {
 db.sync({ force: true })
   .then(() => {
     console.log('seeding database...');
+    return seedMuseum();
+  })
+  .then(() => {
     return seedPieces();
   })
   .then(() => {
