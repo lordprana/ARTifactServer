@@ -1,8 +1,9 @@
 const PythonShell = require('python-shell')
 const { promisify } = require('util')
 
+const run = promisify(PythonShell.run.bind(PythonShell))
+
 const styleImage = (folderOffset = '', relImageFolder, relCkptFolder, ckptName, inFile, outFile) => {
-  const run = promisify(PythonShell.run)
   const options = {
     pythonPath: 'python3',
     args: [
