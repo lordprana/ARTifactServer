@@ -33,9 +33,8 @@ async function seedPieces() {
       artistId: artist.id,
 
       year,
-      pictureUrl: pieces[i]['pictureUrl']
+      pictureUrl: pieces[i]['pictureUrl'],
       museumId: 1, //set to 1 because all seed pieces are from the whitney
-      year
     });
   }
 }
