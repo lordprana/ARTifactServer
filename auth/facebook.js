@@ -12,7 +12,7 @@ if (!process.env.FACEBOOK_APP_ID || !process.env.FACEBOOK_APP_SECRET) {
   router.post('/', (req, res, next) => {
     axios.get(`https://graph.facebook.com/me?fields=name,id,email,picture&access_token=${req.body.token}`)
       .then(result => result.data)
-      .then(fbUser => {
+      .then(fbUser =>
         User.findOrCreate({
           where: { facebookId: fbUser.id },
           defaults: {
@@ -27,10 +27,10 @@ if (!process.env.FACEBOOK_APP_ID || !process.env.FACEBOOK_APP_SECRET) {
           res.send(user)
         })
         .catch(next)
-      })
+      )
       .catch(err => {
-        console.log(err)
-        res.sendStatus(401)
+        err.status = 401
+        next(err)
       })
   })
 }
