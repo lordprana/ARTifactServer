@@ -38,14 +38,6 @@ const User = db.define('user', {
         type: Sequelize.STRING,
         unique: true,
     }
-    // latitude: {
-    //     type: Sequelize.FLOAT,
-    //     allowNull: false
-    // },
-    // longitude: {
-    //     type: Sequelize.FLOAT,
-    //     allowNull: false
-    // }
 },
 {
     hooks: {
