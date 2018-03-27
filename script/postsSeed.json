@@ -1,5 +1,45 @@
 [
     {
+        "subjectLine": null,
+        "content": "Grant Wood is a genius. His portrayals of American life are as carefully composed as they are thoughtful.  He does not just paint images, he provokes his viewers to ask questions as well.",
+        "votes": 22,
+        "pieceId": 1,
+        "userId": 3,
+        "parentId": null
+    },
+    {
+        "subjectLine": null,
+        "content": "The woman is the actually the man's daughter, not his wife! When I found this out it completely changed my perception of their family.",
+        "votes": 12,
+        "pieceId": 1,
+        "userId": 5,
+        "parentId": null
+    },
+    {
+        "subjectLine": null,
+        "content": "I totally agree! Walking through this exhibition poses has really caused me to consider the multitude of foreign styles that have influenced Wood's art, and American culture as a whole.",
+        "votes": 2,
+        "pieceId": 1,
+        "userId": 7,
+        "parentId": 2
+    },
+    {
+        "subjectLine": null,
+        "content": "This image has become a true symbol for representing the different European influences that extended into the American heartland",
+        "votes": 14,
+        "pieceId": 1,
+        "userId": 9,
+        "parentId": 3
+    },
+    {
+        "subjectLine": null,
+        "content": "I don't understand what all the hype is about. Overrated!",
+        "votes": -4,
+        "pieceId": 1,
+        "userId": 9,
+        "parentId": 2
+    },
+    {
         "subjectLine": "Leonard is Totally Amazing!",
         "content": "This piece is an excellent example of Leonard's masterful control over composition, and her incredible eye for color",
         "votes": 4,
