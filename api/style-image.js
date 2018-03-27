@@ -1,7 +1,11 @@
 const router = require('express').Router();
 const fs = require('fs');
+const { promisify } = require('util')
 const { deepStyle } = require('../deep-style/connector');
 module.exports = router;
+
+const readFile = promisify(fs.readFile.bind(fs))
+const writeFile = promisify(fs.writeFile.bind(fs))
 
 router.post('/', async (req, res, next) => {
   try {
@@ -10,10 +14,10 @@ router.post('/', async (req, res, next) => {
     const path = './deep-style/tmp/'
     const photo = Buffer.from(req.body.photo, 'base64')
 
-    await fs.writeFile(path + inFile, photo, err => console.log(err))
+    await writeFile(path + inFile, photo, err => console.log(err))
     await deepStyle(req.body.style, inFile, outFile)
 
-    const styledImageBuffer = await fs.readFile(path + outFile)
+    const styledImageBuffer = await readFile(path + outFile)
     const styledImageBase64 = styledImageBuffer.toString('base64')
     res.send(styledImageBase64)
     //fs.unlink(path + inFile)
