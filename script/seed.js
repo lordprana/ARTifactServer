@@ -7,6 +7,7 @@ const { Piece, Artist, Post, User, Museum } = require('../db/models');
 const pieces = require('./piecesSeed.json');
 const posts = require('./postsSeed.json');
 const users = require('./usersSeed.json');
+const museums = require('./museumSeed.json');
 
 function findOrCreateArtist(piece) {
   const birthYear = piece['Birth Year'] ? piece['Birth Year'] : null;
@@ -30,8 +31,8 @@ async function seedPieces() {
     await Piece.create({
       name: pieces[i]['Piece name'],
       artistId: artist.id,
-      year,
-      museumId: pieces[i]['museumId']
+      museumId: 1, //set to 1 because all seed pieces are from the whitney
+      year
     });
   }
 }
@@ -72,8 +73,20 @@ async function seedPosts() {
   }
 }
 
+async function seedMuseums() {
+  for(let i = 0; i < museums.length; i++){
+    await Museum.create({
+      name: museums[i].name,
+      latitude: museums[i].latitude,
+      longitude: museums[i].longitude
+    })
+  }
+}
 
 db.sync({ force: true })
+  .then(() => {
+    return seedMuseums();
+  })
   .then(() => {
     console.log('seeding database...');
     return seedMuseum();
