@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const fs = require('fs');
-const deepStyle = require('../deep-style/connector');
+const { deepStyle } = require('../deep-style/connector');
 module.exports = router;
 
 router.post('/', (req, res, next) => {
@@ -25,3 +25,4 @@ router.post('/', (req, res, next) => {
 });
 
 // uri should be prepended with data:image/jpeg;base64,
+//make fs async
