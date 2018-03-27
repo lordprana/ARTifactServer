@@ -1,18 +1,9 @@
 const PythonShell = require('python-shell')
+const { promisify } = require('util')
 
-// https://github.com/joelnet/functional-helpers/blob/master/promisify.js
-/* eslint-disable no-confusing-arrow */
-function promisify(func, self) {
-  return (...args) => {
-      return new Promise((resolve, reject) => {
-          const callback = (err, data) => err ? reject(err) : resolve(data)
-          func.apply(self, [...args, callback])
-      })
-  }
-}
+const run = promisify(PythonShell.run.bind(PythonShell))
 
 const styleImage = (folderOffset = '', relImageFolder, relCkptFolder, ckptName, inFile, outFile) => {
-  const run = promisify(PythonShell.run)
   const options = {
     pythonPath: 'python3',
     args: [
@@ -23,4 +14,6 @@ const styleImage = (folderOffset = '', relImageFolder, relCkptFolder, ckptName, 
   return run(folderOffset + 'evaluate.py', options)
 }
 
-module.exports = styleImage.bind(null, 'deep-style/', 'tmp/', 'examples/models/')
+module.exports = {
+  deepStyle: styleImage.bind(null, 'deep-style/', 'tmp/', 'examples/models/'),
+}
