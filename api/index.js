@@ -21,6 +21,7 @@ router.use('/posts', require('./posts'));
 router.use('/users', require('./users'));
 router.use('/museums', require('./museums'));
 router.use('/recommendations', require('./recommendations'));
+router.use('/style-image', require('./style-image'));
 
 router.use((req, res, next) => {
   const error = new Error('Not Found');
