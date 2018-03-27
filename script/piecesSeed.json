@@ -5,7 +5,9 @@
     "Artist Name": "Grant Wood",
     "Birth Year": 1891,
     "Death Year": 1942,
-    "museumId": 1
+    "museumId": 1,
+    "pictureUrl":
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg/800px-Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg"
   },
   {
     "Piece name": "Sea Fan",

@@ -31,7 +31,8 @@ async function seedPieces() {
       name: pieces[i]['Piece name'],
       artistId: artist.id,
       year,
-      museumId: pieces[i]['museumId']
+      museumId: pieces[i]['museumId'],
+      pictureUrl: pieces[i]['pictureUrl']
     });
   }
 }
