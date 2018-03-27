@@ -14,7 +14,16 @@ router.get('/location', (req, res, next) => {
         }
       }).sort((a, b) => { return (a.distance - b.distance) })[0].id
     })
-    .then(id => {res.json(id)})
+    .then(id => {
+      Museum.findById(id, {
+        include: [
+          { model: Piece }
+        ]
+      })
+        .then(museum => {
+          res.json(museum)
+        })
+    })
     .catch(next)
 })
 
