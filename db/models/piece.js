@@ -11,6 +11,12 @@ const Piece = db.define('piece', {
     },
     description: {
       type: Sequelize.TEXT
+    },
+    pictureUrl: {
+      type: Sequelize.STRING,
+      validate: {
+        isUrl: true
+      }
     }
 });
 
