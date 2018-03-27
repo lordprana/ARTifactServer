@@ -11,8 +11,8 @@ router.get('/location', (req, res, next) => {
         return {
           id: museum.id,
           distance: Math.sqrt(Math.pow((museum.latitude - latitude), 2) + Math.pow((museum.longitude - longitude), 2))
-        }
-      }).sort((a, b) => { return (a.distance - b.distance) })[0].id
+        };
+      }).sort((a, b) => { return (a.distance - b.distance); })[0].id;
     })
     .then(id => {
       Museum.findById(id, {
@@ -21,11 +21,11 @@ router.get('/location', (req, res, next) => {
         ]
       })
         .then(museum => {
-          res.json(museum)
-        })
+          res.json(museum);
+        });
     })
-    .catch(next)
-})
+    .catch(next);
+});
 
 router.get('/:museumId', (req, res, next) => {
   Museum.findById(req.params.museumId, {
@@ -34,14 +34,9 @@ router.get('/:museumId', (req, res, next) => {
     ]
   })
     .then(museum => {
-      res.json(museum)
+      res.json(museum);
     })
-    .catch(next)
-})
-  .then(museum => {
-    res.json(museum);
-  })
-  .catch(next);
+    .catch(next);
 });
 
 router.get('/:museumId/pieces', (req, res, next) => {
