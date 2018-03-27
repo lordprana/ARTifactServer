@@ -44,7 +44,10 @@ async function seedUsers(){
       email: users[i].email
     });
     user.addFavoritePiece(1);
-  }
+    // Each user should have a unique favorite piece for testing the
+    // recommendation engine
+    if (user.id !== 1) user.addFavoritePiece(user.id);
+}
 }
 
 async function seedPosts() {
