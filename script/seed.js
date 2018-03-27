@@ -37,6 +37,14 @@ async function seedPieces() {
   }
 }
 
+async function seedMuseum(){
+  await Museum.create({
+    name: 'Whitney',
+    latitude: 12,
+    longitude: 5
+  })
+}
+
 async function seedUsers(){
   for (let i = 0; i < users.length; i++){
     let user = await User.create({
@@ -81,6 +89,9 @@ db.sync({ force: true })
   })
   .then(() => {
     console.log('seeding database...');
+    return seedMuseum();
+  })
+  .then(() => {
     return seedPieces();
   })
   .then(() => {

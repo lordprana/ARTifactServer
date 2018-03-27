@@ -1,52 +1,67 @@
 [
   {
+    "Piece name": "American Gothic",
+    "Year created": 1930,
+    "Artist Name": "Grant Wood",
+    "Birth Year": 1891,
+    "Death Year": 1942,
+    "museumId": 1
+  },
+  {
     "Piece name": "Sea Fan",
     "Year created": 1980,
     "Artist Name": "Lesley Schiff",
     "Birth Year": 1951,
-    "Death Year": ""
+    "Death Year": "",
+    "museumId": 1
   },
   {
     "Piece name": "Leopards",
     "Year created": 1981,
     "Artist Name": "Lesley Schiff",
     "Birth Year": 1951,
-    "Death Year": ""
+    "Death Year": "",
+    "museumId": 1
   },
   {
     "Piece name": "Toy Snake",
     "Year created": 1981,
     "Artist Name": "Lesley Schiff",
     "Birth Year": 1951,
-    "Death Year": ""
+    "Death Year": "",
+    "museumId": 1
   },
   {
     "Piece name": "Fishbowl",
     "Year created": 1981,
     "Artist Name": "Lesley Schiff",
     "Birth Year": 1951,
-    "Death Year": ""
+    "Death Year": "",
+    "museumId": 1
   },
   {
     "Piece name": "Rocket Ship and Soldier",
     "Year created": 1981,
     "Artist Name": "Lesley Schiff",
     "Birth Year": 1951,
-    "Death Year": ""
+    "Death Year": "",
+    "museumId": 1
   },
   {
     "Piece name": "Globe",
     "Year created": 1981,
     "Artist Name": "Lesley Schiff",
     "Birth Year": 1951,
-    "Death Year": ""
+    "Death Year": "",
+    "museumId": 1
   },
   {
     "Piece name": "Fruits",
     "Year created": 1981,
     "Artist Name": "Lesley Schiff",
     "Birth Year": 1951,
-    "Death Year": ""
+    "Death Year": "",
+    "museumId": 1
   },
   {
     "Piece name": "T.V. Gyroscope",
