@@ -1,6 +1,6 @@
 from __future__ import print_function
 import sys
-sys.path.insert(0, 'src')
+# sys.path.insert(0, 'src')
 import transform, numpy as np, vgg, pdb, os
 import scipy.misc
 import tensorflow as tf
@@ -15,7 +15,7 @@ import numpy
 BATCH_SIZE = 4
 DEVICE = '/gpu:0'
 
-# disables warning about cpu instructions
+# disables cpu instruction warning
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
