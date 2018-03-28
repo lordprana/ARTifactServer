@@ -1,11 +1,11 @@
-const axios = require('axios')
-const router = require('express').Router()
-const { User } = require('../db/models')
-module.exports = router
+const axios = require('axios');
+const router = require('express').Router();
+const { User, Post, Artist } = require('../db/models');
+module.exports = router;
 
 if (!process.env.FACEBOOK_APP_ID || !process.env.FACEBOOK_APP_SECRET) {
 
-  console.log('Facebook app ID / secret not found. Skipping Facebook OAuth.')
+  console.log('Facebook app ID / secret not found. Skipping Facebook OAuth.');
 
 } else {
 // change to findOrCreate
@@ -23,14 +23,27 @@ if (!process.env.FACEBOOK_APP_ID || !process.env.FACEBOOK_APP_SECRET) {
           }
         })
         .then(([user, wasCreated]) => {
-          console.log((wasCreated ? 'created' : 'found') + ' user with Facebook ID', user.facebookId)
-          res.send(user)
+          console.log((wasCreated ? 'created' : 'found') + ' user with Facebook ID', user.facebookId);
+          user.getFavoritePieces({
+            include: [
+              {
+                model: Post
+              },
+              {
+                model: Artist
+              }
+            ]
+          })
+          .then(pieces => {
+            user.dataValues.pieces = pieces;
+            res.json(user);
+          });
         })
         .catch(next)
       )
       .catch(err => {
-        err.status = 401
-        next(err)
-      })
-  })
+        err.status = 401;
+        next(err);
+      });
+  });
 }
