@@ -1,12 +1,18 @@
 const router = require('express').Router();
-const { User, Post } = require('../db/models');
+const { User, Post, Piece } = require('../db/models');
 module.exports = router;
 
 
 router.get('/me', (req, res, next) => {
     if (!req.auth) return res.sendStatus(401);
     if (!req.user) return res.sendStatus(404);
-    req.user.getFavoritePieces()
+    req.user.getFavoritePieces({
+        include: [
+            {
+                model: Post
+            }
+        ]
+    })
     .then(pieces => {
         req.user.dataValues.pieces = pieces;
         res.json(req.user);
@@ -28,9 +34,15 @@ router.post('/add-piece', (req, res, next) => {
     if (!req.auth) return res.sendStatus(401);
     if (!req.user) return res.sendStatus(404);
     req.user.addFavoritePiece(req.body.piece.id)
-    .then(piece => {
-        console.log(piece);
-        res.json(piece);
+    .then(() => {
+        Piece.findById(req.body.piece.id, {
+            include: [
+                { model: Post }
+            ]
+        })
+        .then(piece => {
+            res.json(piece);
+        });
     });
 });
 
