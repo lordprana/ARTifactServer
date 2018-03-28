@@ -1,6 +1,6 @@
 const router = require('express').Router();
 let ug = require('ug');
-const { User, Piece, Post } = require('../db/models');
+const { User, Piece, Post, Artist } = require('../db/models');
 module.exports = router;
 
 router.get('/', (req, res, next) => {
@@ -18,6 +18,9 @@ router.get('/', (req, res, next) => {
           include: [
             {
               model: Post
+            },
+            {
+              model: Artist
             }
           ]
         }
