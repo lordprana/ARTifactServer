@@ -1,6 +1,6 @@
 const router = require('express').Router();
 let ug = require('ug');
-const { User, Piece } = require('../db/models');
+const { User, Piece, Post } = require('../db/models');
 module.exports = router;
 
 router.get('/', (req, res, next) => {
@@ -14,7 +14,12 @@ router.get('/', (req, res, next) => {
       [
         {
           model: Piece,
-          as: 'FavoritePieces'
+          as: 'FavoritePieces',
+          include: [
+            {
+              model: Post
+            }
+          ]
         }
       ]
   });
