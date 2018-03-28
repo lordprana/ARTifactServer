@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Museum, Piece, Post } = require('../db/models');
+const { Museum, Piece, Post, Artist } = require('../db/models');
 module.exports = router;
 
 router.get('/location', (req, res, next) => {
@@ -43,7 +43,8 @@ router.get('/:museumId/pieces', (req, res, next) => {
   Piece.findAll(
     {
       where: { museumId: req.params.museumId },
-      include: [{ model: Post }]
+      include: [{ model: Post },
+      {model: Artist}],
     }
   ).then(pieces => {
     pieces.forEach((piece) => {
