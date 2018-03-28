@@ -28,7 +28,7 @@
         "content": "This image has become a true symbol for representing the different European influences that extended into the American heartland",
         "votes": 14,
         "pieceId": 1,
-        "userId": 2,
+        "userId": 4,
         "parentId": 3
     },
     {
@@ -44,7 +44,7 @@
         "content": "This piece is an excellent example of Leonard's masterful control over composition, and her incredible eye for color",
         "votes": 4,
         "pieceId": 2,
-        "userId": 3,
+        "userId": 4,
         "parentId": null
     },
     {
@@ -53,15 +53,15 @@
         "votes": 10,
         "pieceId": 2,
         "userId": 5,
-        "parentId": 6
+        "parentId": 1
     },
     {
         "subjectLine": null,
         "content": "One of the most underappreciated artists of her time!  Leonard shows us time and time again that beauty is in the eye of the beholder. This piece is an excellent example of how she can propose fascinating questions about human nature and create compelling narratives through a single photograph.",
         "votes": 12,
         "pieceId": 2,
-        "userId": 2,
-        "parentId": 7
+        "userId": 5,
+        "parentId": 1
     },
     {
     "subjectLine": null,
@@ -69,14 +69,38 @@
     "votes": 8,
     "pieceId": 2,
     "userId": 3,
-    "parentId": 7
+    "parentId": 2
     },
     {
         "subjectLine": null,
-        "content": "bleak but powerful, Leonard embodies what it means to be a modern photographer",
-        "votes": 6,
-        "pieceId": 5,
+        "content": "This piece shows that art doesn't need to be beautiful to have meaning",
+        "votes": 14,
+        "pieceId": 4,
+        "userId": 5,
+        "parentId": 4
+    },
+        {
+        "subjectLine": null,
+        "content": "I can feel it staring back at me",
+        "votes": 1,
+        "pieceId": 6,
+        "userId": 5,
+        "parentId": 4
+    },
+    {
+        "subjectLine": null,
+        "content": "The lack of detail lets the viewer's imagination roam and create his own unique experience ",
+        "votes": 3,
+        "pieceId": 4,
         "userId": 2,
-        "parentId": 8
+        "parentId": 4
+    },
+    {
+        "subjectLine": null,
+        "content": "First",
+        "votes": 1,
+        "pieceId": 3,
+        "userId": 2,
+        "parentId": 4
     }
 ]
