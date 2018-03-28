@@ -33,9 +33,9 @@ router.get('/me', (req, res, next) => {
 router.post('/add-piece', (req, res, next) => {
     if (!req.auth) return res.sendStatus(401);
     if (!req.user) return res.sendStatus(404);
-    req.user.addFavoritePiece(req.body.piece.id)
+    req.user.addFavoritePiece(req.body.id)
     .then(() => {
-        return Piece.findById(req.body.piece.id, {
+        return Piece.findById(req.body.id, {
             include: [
                 { model: Post }
             ]
@@ -49,7 +49,7 @@ router.post('/add-piece', (req, res, next) => {
 router.post('/remove-piece', (req, res, next) => {
     if (!req.auth) return res.sendStatus(401);
     if (!req.user) return res.sendStatus(404);
-    req.user.removeFavoritePiece(req.body.piece.id)
+    req.user.removeFavoritePiece(req.body.id)
     .then(() => {
         res.sendStatus(204);
     });
