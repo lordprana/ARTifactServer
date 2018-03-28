@@ -31,7 +31,6 @@ router.get('/me', (req, res, next) => {
 // });
 
 router.post('/add-piece', (req, res, next) => {
-    console.log('ADD PIECE');
     if (!req.auth) return res.sendStatus(401);
     if (!req.user) return res.sendStatus(404);
     req.user.addFavoritePiece(req.body.id)
@@ -48,7 +47,6 @@ router.post('/add-piece', (req, res, next) => {
 });
 
 router.post('/remove-piece', (req, res, next) => {
-    console.log('REMOVE PIECE');
     if (!req.auth) return res.sendStatus(401);
     if (!req.user) return res.sendStatus(404);
     req.user.removeFavoritePiece(req.body.id)
