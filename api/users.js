@@ -35,14 +35,14 @@ router.post('/add-piece', (req, res, next) => {
     if (!req.user) return res.sendStatus(404);
     req.user.addFavoritePiece(req.body.piece.id)
     .then(() => {
-        Piece.findById(req.body.piece.id, {
+        return Piece.findById(req.body.piece.id, {
             include: [
                 { model: Post }
             ]
         })
-        .then(piece => {
-            res.json(piece);
-        });
+    })
+    .then(piece => {
+        res.json(piece);
     });
 });
 
